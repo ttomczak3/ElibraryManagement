@@ -15,15 +15,11 @@ namespace WebApplication1
 
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
         // Sign up button click event
         protected void Button1_Click(object sender, EventArgs e)
         {
 
+            // Checking to see if member already exists
             if (checkMemberExists())
             {
                 Response.Write("<script>alert('Member Already Exist with this Member ID, try again.');</script>");
@@ -44,6 +40,7 @@ namespace WebApplication1
             try
             {
 
+                // Database connection
                 SqlConnection con = new SqlConnection(strcon);
 
                 if (con.State == ConnectionState.Closed)
@@ -51,6 +48,7 @@ namespace WebApplication1
                     con.Open();
                 }
 
+                // Checking to see if a member already exists in the database
                 SqlCommand cmd = new SqlCommand("SELECT * FROM member_master_tbl WHERE member_id='" + TextBox8.Text.Trim() + "';", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -81,6 +79,7 @@ namespace WebApplication1
             try
             {
 
+                // Database connection
                 SqlConnection con = new SqlConnection(strcon);
 
                 if (con.State == ConnectionState.Closed)
@@ -88,6 +87,7 @@ namespace WebApplication1
                     con.Open();
                 }
 
+                // Adding a new user to the database
                 SqlCommand cmd = new SqlCommand("INSERT INTO member_master_tbl(full_name,dob,contact_no,email,state,city,pincode,full_address,member_id,password,account_status) " +
                     "values(@full_name,@dob,@contact_no,@email,@state,@city,@pincode,@full_address,@member_id,@password,@account_status)", con);
 
