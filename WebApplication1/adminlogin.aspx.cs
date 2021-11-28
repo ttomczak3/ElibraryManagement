@@ -39,8 +39,13 @@ namespace WebApplication1
 
                     while (dr.Read())
                     {
-                        Response.Write("<script>alert('" + dr.GetValue(0).ToString() + "');</script>");
+
+                        Session["username"] = dr.GetValue(0).ToString();
+                        Session["fullname"] = dr.GetValue(2).ToString();
+                        Session["role"] = "admin";
+
                     }
+                    Response.Redirect("homepage.aspx");
 
                 }
                 else
