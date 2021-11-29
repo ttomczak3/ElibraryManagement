@@ -153,6 +153,8 @@ namespace WebApplication1
             LinkButton9.Visible = false; // Book issuing link button
             LinkButton10.Visible = false; // Member management link button
 
+            Response.Redirect("homepage.aspx");
+
         }
     }
 }
