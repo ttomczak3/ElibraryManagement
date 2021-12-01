@@ -15,10 +15,7 @@ namespace WebApplication1
 
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
+        protected void Page_Load(object sender, EventArgs e) => GridView1.DataBind();
 
         // Add button click
         protected void Button2_Click(object sender, EventArgs e)
@@ -66,12 +63,47 @@ namespace WebApplication1
         }
 
         // Go button click
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e) => getAuthorById();
+
+        // User defined method
+        void getAuthorById()
         {
+
+            try
+            {
+
+                // Database connection
+                SqlConnection con = new SqlConnection(strcon);
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                // Checking to see if a author already exists in the database
+                SqlCommand cmd = new SqlCommand("SELECT * FROM author_master_tbl WHERE author_id='" + TextBox1.Text.Trim() + "';", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count >= 1)
+                {
+                    TextBox2.Text = dt.Rows[0][1].ToString();
+                }
+                else
+                {
+                    Response.Write("<script>alert('Invalid author ID!');</script>");
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
 
         }
 
-        // User defined method
         void deleteAuthor()
         {
 
@@ -94,6 +126,7 @@ namespace WebApplication1
 
                 Response.Write("<script>alert('Author deleted successfully!');</script>");
                 clearForm();
+                GridView1.DataBind();
 
             }
 
@@ -128,6 +161,7 @@ namespace WebApplication1
 
                 Response.Write("<script>alert('Author updated successfully!');</script>");
                 clearForm();
+                GridView1.DataBind();
 
             }
 
@@ -164,6 +198,7 @@ namespace WebApplication1
 
                 Response.Write("<script>alert('Author added!');</script>");
                 clearForm();
+                GridView1.DataBind();
 
             }
 

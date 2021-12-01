@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminpublishermanagement.aspx.cs" Inherits="WebApplication1.adminpublishermanagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        // Show entries, search bar, and making the first row a heading
+        $(document).ready(function () {
+            $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <div class="container">
@@ -34,7 +40,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="ID"></asp:TextBox>
-                                        <asp:Button class="btn btn-secondary" ID="Button1" runat="server" Text="Go" />
+                                        <asp:Button class="btn btn-secondary" ID="Button1" runat="server" Text="Go" OnClick="Button1_Click" />
                                     </div>
                                 </div>
                             </div>
@@ -47,13 +53,13 @@
                         </div>
                         <div class="row">
                             <div class="col-4">
-                                <asp:Button class="btn btn-success btn-block btn-lg" ID="Button2" runat="server" Text="Add" />
+                                <asp:Button class="btn btn-success btn-block btn-lg" ID="Button2" runat="server" Text="Add" OnClick="Button2_Click" />
                             </div>
                             <div class="col-4">
-                                <asp:Button class="btn btn-primary btn-block btn-lg" ID="Button3" runat="server" Text="Update" />
+                                <asp:Button class="btn btn-primary btn-block btn-lg" ID="Button3" runat="server" Text="Update" OnClick="Button3_Click" />
                             </div>
                             <div class="col-4">
-                                <asp:Button class="btn btn-danger btn-block btn-lg" ID="Button4" runat="server" Text="Delete" />
+                                <asp:Button class="btn btn-danger btn-block btn-lg" ID="Button4" runat="server" Text="Delete" OnClick="Button4_Click" />
                             </div>
                         </div>
                     </div>
@@ -79,8 +85,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <asp:GridView CssClass="table tbale-striped table-bordered" ID="GridView1" runat="server">
-
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:elibraryDBConnectionString %>" SelectCommand="SELECT * FROM [publisher_master_tbl]"></asp:SqlDataSource>
+                                <asp:GridView CssClass="table tbale-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="publisher_id" DataSourceID="SqlDataSource1">
+                                    <Columns>
+                                        <asp:BoundField DataField="publisher_id" HeaderText="publisher_id" ReadOnly="True" SortExpression="publisher_id" />
+                                        <asp:BoundField DataField="publisher_name" HeaderText="publisher_name" SortExpression="publisher_name" />
+                                    </Columns>
                                 </asp:GridView>
                             </div>
                         </div>
