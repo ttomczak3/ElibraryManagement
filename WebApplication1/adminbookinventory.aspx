@@ -76,13 +76,13 @@
                            <asp:DropDownList class="form-control" ID="DropDownList1" runat="server">
                               <asp:ListItem Text="English" Value="English" />
                               <asp:ListItem Text="한국어" Value="한국어" />
+                               <asp:ListItem Text="日本語" Value="日本語" />
                            </asp:DropDownList>
                         </div>
                         <label>Publisher Name</label>
                         <div class="form-group">
                            <asp:DropDownList class="form-control" ID="DropDownList2" runat="server">
-                              <asp:ListItem Text="Publisher 1" Value="Publisher 1" />
-                              <asp:ListItem Text="Publisher 2" Value="Publisher 2" />
+                              
                            </asp:DropDownList>
                         </div>
                      </div>
@@ -90,8 +90,7 @@
                         <label>Author Name</label>
                         <div class="form-group">
                            <asp:DropDownList class="form-control" ID="DropDownList3" runat="server">
-                              <asp:ListItem Text="A1" Value="a1" />
-                              <asp:ListItem Text="a2" Value="a2" />
+                              
                            </asp:DropDownList>
                         </div>
                         <label>Publish Date</label>

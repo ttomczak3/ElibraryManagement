@@ -18,10 +18,11 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            fillAuthorPublisherValues();
-            GridView1.DataBind();
-
+            if (!IsPostBack) 
+            { 
+                fillAuthorPublisherValues();
+                GridView1.DataBind();
+            }
         }
 
         // Go button
