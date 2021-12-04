@@ -4,7 +4,10 @@
 
         // Show entries, search bar, and making the first row a heading
         $(document).ready(function () {
-            $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+            $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable({
+                "scrollY": "64vh",
+                "scrollCollapse": true
+            });
         });
 
         // Image upload
