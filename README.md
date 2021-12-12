@@ -21,7 +21,7 @@
 
 ## Description
 
-The idea of this project is to demonstrate using ASP.NET and SQL. This project has multiple tables with users, admins, and books. You can issue a book to a user as an admin like you would in an actual library.
+The idea of this project is to demonstrate using ASP.NET, ADO.NET, and SQL. This project has multiple tables with users, admins, and books. You can issue a book to a user as an admin like you would in an actual library.
 
 #### Technologies
 
